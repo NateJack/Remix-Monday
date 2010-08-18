@@ -1,0 +1,101 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	background: #000 url('/images/bg.jpg') top center no-repeat fixed;
+	color: #999;
+	font: 12px 'Helvetica Neue', Helvetica, sans-serif;
+	text-align: center;
+}
+
+a{
+	color: #06C;
+	text-decoration: none;
+}
+a:hover{ color: #F50; }
+
+p{ margin: 15px 0; }
+
+h1, h2{ color: #06C; font-weight: normal; }
+
+/* Main Wrapper (Width of Site) */
+
+#wrapper{
+	margin: 40px auto 40px auto;
+	text-align: left;
+	width: 650px;
+}
+
+#header{ margin-bottom: 20px; }
+
+/* Div Blocks */
+
+.block, .remix, .pagination{ background-color: #FFF; }
+.mb, .block, .pagination, .remix, #notice{ margin-bottom: 10px; }
+.block, .remix, .pagination, #processing{ padding: 20px; }
+.block, .remix, .pagination, #processing, #notice{ -moz-border-radius: 5px; -webkit-border-radius: 5px; }
+
+#processing, #notice{
+	background-color: #000; 
+	text-align: center;
+}
+
+#notice{
+	border: 2px solid #CCC;
+	color: #FFF;
+	padding: 10px 0;
+}
+
+/* Floats & Clears */
+
+.fl{ float: left; }
+.fr{ float: right; }
+.clear{ clear: both; }
+
+/* Top Right Upload Button */
+
+.upload_button{
+	background-color: #E3E3E3;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#E3E3E3));
+	color: #000;
+	display: block;
+	font-size: 15px;
+	padding: 5px 0 6px 0;
+	text-align: center;
+	width: 175px;
+}
+
+.upload_button:hover{
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#E3E3E3), to(white));
+	text-decoration: none;
+}
+
+/* Upload Bar */
+
+.upload_button, .uploadifyProgress, .uploadifyProgressBar{ -moz-border-radius: 13px; -webkit-border-radius: 13px; } 
+.uploadifyHeader, .uploadifyProgress, .uploadifyQueueItem .cancel{ display: none; }
+.uploadifyQueueItem, .uploadifyProgress { margin: 10px 0; width: 100%; }
+.uploadifyProgress { background-color: #EEE; }
+.uploadifyError { color: red; }
+
+.uploadifyProgressBar {
+	background: -webkit-gradient(linear, 0% 100%, 0% 0%, from(#39F), color-stop(0.5, #74B9FF), to(#39F)) repeat-x, #39F;
+	width: 0px;
+	height: 26px;
+}
+
+/* Share links on Remix Page */
+
+.share a{
+	background: url("/images/icons.png") no-repeat;
+	display: block;
+	float: left;
+	margin-left: 2px;
+}
+
+.share a.myspace { background-position: 0 0px; }
+.share a.facebook { background-position: 0 -21px; }
+.share a.twitter { background-position: 0 -41px; }
+.share a.email { background-position: 0 -124px; }

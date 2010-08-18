@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title><%= "#{@page_title} - " if @page_title -%><%= SETTINGS["title"] %></title>
+
+	<meta name="title" content="<%= SETTINGS["title"] -%>" />
+	<meta name="description" content="<%= SETTINGS["description"] -%>" /> 
+
+	<link href="<%= root_url -%>images/artwork.jpg" rel="image_src" /> 
+
+	<meta property="og:site_name" content="<%= SETTINGS["title"] -%>" />
+	<meta property="fb:app_id" content="<%= SETTINGS["facebook_id"] -%>" />	
+	
+	<% if params[:action] == "show" %>
+
+	<%= render :partial => "remixes/meta", :locals => {:remix => @remix} %>
+
+	<% else %>
+	
+	<meta property="og:title" content="<%= SETTINGS["title"] -%>" /> 
+  <meta property="og:type" content="website" /> 
+  <meta property="og:url" content="<%= root_url -%>" /> 
+  <meta property="og:image" content="<%= root_url -%>images/artwork.jpg" />
+	
+	<% end %>
+
+  <%= stylesheet_link_tag "application", "player" %>
+	<%= javascript_include_tag :defaults, 'swfobject', 'jquery.uploadify.v2.1.0', 'soundcloud.player.api', 'sc-player' %>
+
+</head>
+<body>
+	
+	<div id="wrapper">
+		
+		<table cellspacing="0" cellpadding="0" border="0" width="100%" id="header">
+			<tr valign="bottom">
+				<td><%= link_to image_tag("logo.png", :border => 0, :alt => SETTINGS["title"]), root_path -%></td>
+				<td align="right">
+					<% if logged_in? %>
+						<%= link_to 'Upload Your Remix', upload_path, :class => "upload_button" %>
+					<% else %>
+						<%= link_to 'Login to Upload', login_path, :class => "upload_button" %>
+					<% end %>
+				</td>
+			</tr>
+		</table>
+
+		<%= "<div id='notice'>#{flash[:notice]}</div>" if flash[:notice] -%>
+
+		<%= yield %>
+	
+	</div>
+
+</body>
+</html>

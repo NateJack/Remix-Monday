@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  remix_id: 1
+  ip_address: MyString
+
+two:
+  remix_id: 1
+  ip_address: MyString

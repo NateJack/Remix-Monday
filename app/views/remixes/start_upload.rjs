@@ -1,0 +1,10 @@
+page << "$('#remix_file').uploadifySettings('hideButton','true');"
+page << "$('#remix_fileUploader').width(1);"
+page << "$('#remix_fileUploader').height(1);"
+
+page << "$('#form_header,#title,#info,#upload').hide();"
+
+page << "$('.uploadifyHeader,.uploadifyProgress,.cancel').show();"
+
+page << "$('#remix_file').uploadifySettings('scriptData',{'remix[title]' : $('#remix_title').val()});"
+page << "$('#remix_file').uploadifyUpload();"

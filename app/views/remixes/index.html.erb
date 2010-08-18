@@ -1,0 +1,29 @@
+<% if !params[:page] %>
+
+<div class="block"><%= SETTINGS["instructions"] -%></div>
+
+<% end %>
+
+<% if !@remixes.empty? %>
+
+	<% if !params[:page] %>
+
+		<div class="block">
+	
+			<h2 class="fl">Listen To The Remixes</h2>
+			<h2 class="fr"><%= link_to "Most Recent", remixes_path -%> / <%= link_to "Most Popular", popular_path -%></h2>
+			<div class="clear"></div>
+	
+		</div>
+
+	<% else %>
+
+		<%= will_paginate @remixes %>
+
+	<% end %>
+
+	<%= render @remixes %>
+
+	<%= will_paginate @remixes %>
+	
+<% end %>

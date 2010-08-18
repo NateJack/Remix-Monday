@@ -1,0 +1,11 @@
+<!-- Erase me and insert your own Remix instructions, including stems, deadlines, etc. -->
+
+<h1>Remix SoundCloud</h1>
+
+<p>
+
+This is an example application showing the default configuration of <a href="http://github.com/soundcloud/soundcloud-remix">SoundCloud-Remix</a>, an app that allows you to easily throw a SoundCloud remix competition on your website.<br>
+<br>
+For further instructions and documentation please visit <a href="http://github.com/soundcloud/soundcloud-remix">our github</a>.
+
+</p>

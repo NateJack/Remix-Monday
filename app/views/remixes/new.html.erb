@@ -1,0 +1,64 @@
+<div class="block">
+
+	<h2 id="form_header">Upload Your Remix</h2>
+
+	<% form_for(@remix, :html => {:multipart => true}) do |f| %>
+
+	  <%= f.error_messages %>
+	
+		<p id="title">
+		
+			<%= f.label :title, "Remix Title:" %><br>
+			<%= f.text_field :title, :onkeyup => "countTitle();", :onFocus => "countTitle();", :onBlur => "countTitle();" %>
+			
+		</p>
+			
+		<%= f.file_field :file %>
+		
+		<p id="info">
+			
+			<small>Files must be smaller than <%= number_to_human_size(SETTINGS["upload_limit"], :precision => 0) -%>.</small>
+			
+			<% if SETTINGS["terms"] %><br><br>By uploading you agree to the <%= link_to "Terms and Conditions", SETTINGS["terms"], :target => "_blank" %> of <%= SETTINGS["title"] %>.<% end %>
+			<% if SETTINGS["remix"]["license"] %><br><br>By uploading you agree to license your remix under <% link_to SETTINGS["remix"]["license"], "http://wiki.github.com/soundcloud/api/11-licenses" %><% end %>
+			
+		</p>
+		
+		<p id="upload">
+		
+			<script type="text/javascript">document.write('<%= escape_javascript(button_to_remote("Upload", {:url => start_upload_path}, {:id => "remix_submit", :disabled => "disabled"})) -%>');</script>
+		
+			<noscript><%= f.submit 'Upload' %></noscript>
+		
+		</p>
+
+	<% end %>
+
+</div>
+
+<%- session_key = ActionController::Base.session_options[:key] -%>
+
+<script type="text/javascript">
+
+	$('#remix_file').uploadify({
+		uploader  	: '/flash/uploadify.swf',
+		script    	: '/remixes',
+		folder			: '/remixes',
+		auto     		: false,
+		fileDesc		: "Remix",
+		fileExt			: "*.aif;*.mp3;*.m4a;*.ogg;*.wav;*.flac;*.aac",
+		sizeLimit		: <%= SETTINGS["upload_limit"] -%>,
+		buttonText	: "Choose file",
+		scriptData	: {
+        '<%= session_key -%>'		: '<%= u(cookies[session_key]) -%>',
+        'authenticity_token'		: '<%= u(form_authenticity_token) -%>',
+				'_http_accept'					: "application/javascript"
+    },
+		fileDataName : "remix[file]",
+		onComplete  : function(a, b, c, response, data){ 
+			$(".uploadifyHeader").text('Saving...');
+			eval(response);
+		}
+	});
+
+</script>

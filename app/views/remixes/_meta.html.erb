@@ -1,0 +1,12 @@
+<meta content="<%= remix.title -%> by <%= remix.user.name -%>" name="title" /> 
+<meta content="video" name="medium" /> 
+<link href="http://player.soundcloud.com/player.swf?url=<%= remix.url -%><%= SETTINGS['player_params'] -%>" rel="video_src" /> 
+<meta content="81" name="video_height" /> 
+<meta content="300" name="video_width" /> 
+<meta content="application/x-shockwave-flash" name="video_type" /> 
+<link href="<%= root_url -%>images/artwork.jpg" rel="image_src" /> 
+
+<meta property="og:title" content="<%= remix.title -%>" /> 
+<meta property="og:type" content="song" /> 
+<meta property="og:url" content="<%= remix_url(remix) -%>" /> 
+<meta property="og:image" content="<%= root_url -%>images/artwork.jpg" />

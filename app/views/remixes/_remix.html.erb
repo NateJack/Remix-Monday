@@ -1,0 +1,67 @@
+<div class="remix">
+	
+	<div class="mb">
+
+		<%= image_tag remix.user.avatar_url, :height => 40, :width => 40, :class => "fl", :style => "padding-right:10px;" %>
+
+		<div class="fl">
+
+			<h2><%= link_to remix.title, remix -%></h2>
+
+			Uploaded by <%= link_to remix.user.name, remix.user.permalink_url, :target => "_blank" -%>
+				
+			<% if logged_in? %>
+				<% if current_user.uploaded(remix) || current_user.admin? %>
+					- <%= link_to 'Delete', remix, :confirm => 'Are you sure?', :method => :delete %>
+				<% end %>
+			<% end %>
+
+		</div>
+
+		<div class="fr" style="text-align:right;">
+		
+			<h2 id="vote_link_<%= remix.id -%>">&nbsp;
+			
+			<% if !remix.voted?(request.remote_ip) %>
+			
+			<script type="text/javascript">document.write('<%= escape_javascript(link_to_remote("Vote", :url => vote_path(remix.id))) -%>');</script>
+			
+			<noscript><%= link_to "Vote", vote_path(remix.id) %></noscript>
+			
+			<% end %>
+			
+			</h2>
+
+			<span id="vote_count_<%= remix.id -%>"><%= pluralize remix.votes_count, 'vote' -%></span>
+
+		</div>
+
+		<div class="clear"></div>
+	
+	</div>
+	
+	<% if params[:action] == "show" && !remix.available? %>
+		
+	<div id="processor">
+
+		<div id="processing">
+			
+			<%= periodically_call_remote(:url => status_path(remix.id), :frequency => '15') -%>
+
+			Processing<br><%= image_tag "throbber.gif" %>
+
+		</div>
+		
+	</div>
+		
+	<% else %>
+
+	<div class="player">
+
+		<%= link_to remix.title, remix.url, :class => "sc-player" -%>
+
+	</div>
+
+	<% end %>
+
+</div>

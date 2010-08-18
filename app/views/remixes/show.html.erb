@@ -1,0 +1,26 @@
+<%= render @remix -%>
+
+<div class="block">
+	
+	<div class="fl">
+		
+		<% if SETTINGS["facebook_id"] %>
+		
+		<iframe src="http://www.facebook.com/plugins/like.php?href=<%= remix_url(@remix) -%>&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=25" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:25px;" allowTransparency="true"></iframe>
+		
+		<% end %>
+		
+	</div>
+	
+	<div class="fr share">
+		
+		<%= link_to image_tag("spacer.gif", :width => 20, :border => 0), "http://facebook.com/sharer.php?u=#{remix_url(@remix)}", :target => "_blank", :class => "facebook" %>
+		<%= link_to image_tag("spacer.gif", :width => 20, :border => 0), "http://twitter.com/home/?status=#{@remix.title}+by+#{@remix.user.name}+#{remix_url(@remix)}", :target => "_blank", :class => "twitter" %>
+		<%= link_to image_tag("spacer.gif", :width => 20, :border => 0), "http://www.myspace.com/index.cfm?fuseaction=postto&t=#{@remix.title}+by+#{@remix.user.name}&u=#{remix_url(@remix)}", :target => "_blank", :class => "myspace" %>
+		<%= link_to image_tag("spacer.gif", :width => 20, :border => 0), "mailto:?subject=#{@remix.title}+by+#{@remix.user.name}&amp;body=#{remix_url(@remix)}", :class => "email" %>
+		
+	</div>
+	
+	<div class="clear"></div>
+	
+</div>
